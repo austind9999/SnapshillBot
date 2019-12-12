@@ -8,6 +8,7 @@ import sqlite3
 import time
 import traceback
 import warnings
+import yaml
 
 from bs4 import BeautifulSoup
 from html.parser import unescape
@@ -245,7 +246,7 @@ class Notification:
                 return
             if len(comment) > 9999:
                 link = self.post.permalink
-                submission = self.reddit.subreddit("SnapshillBotEx").submit(
+                submission = self.reddit.subreddit("MemesModArchive").submit(
                     "Archives for " + link, selftext=comment[:39999]
                 )
                 submission.reply(
