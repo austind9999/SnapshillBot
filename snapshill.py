@@ -483,9 +483,9 @@ if __name__ == "__main__":
         password = CONFIG['Password']
         USER_AGENT = CONFIG['User Agent']
 
-    limit = int(os.environ.get("LIMIT", 25))
-    wait = int(os.environ.get("WAIT", 5))
-    refresh = int(os.environ.get("REFRESH", 1800))
+    limit = int(os.environ.get("LIMIT", 100))
+    wait = int(os.environ.get("WAIT", 2))
+    refresh = int(os.environ.get("REFRESH", 600))
 
     log.info("Starting...")
     snapshill = Snapshill(
