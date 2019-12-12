@@ -467,12 +467,12 @@ class Snapshill:
 
 db = sqlite3.connect(DB_FILE)
 cur = db.cursor()
-HASLINKS = "SELECT name FROM sqlite_master WHERE type='table' AND name='links';"
-if cur.execute(HASLINKS):
-    log.info('Found table "links" in db %s.' % DB_FILE)
-else:
-    cur.execute('CREATE TABLE links (id TEXT PRIMARY KEY, reply TEXT)')
-    log.info('Created table "links" in db %s.' % DB_FILE)
+#HASLINKS = "SELECT name FROM sqlite_master WHERE type='table' AND name='links';"
+#if cur.execute(HASLINKS):
+#    log.info('Found table "links" in db %s.' % DB_FILE)
+#else:
+#    cur.execute('CREATE TABLE links (id TEXT PRIMARY KEY, reply TEXT)')
+#    log.info('Created table "links" in db %s.' % DB_FILE)
 
 if __name__ == "__main__":
     with open('config.yaml') as config_file:
