@@ -365,9 +365,9 @@ class Snapshill:
         if not self._setup:
             raise Exception("Snapshill not ready yet!")
 
-        submissions = self.reddit.subreddit('memes+meme')
+        submissions = reddit.subreddit('memes+meme')
 
-        for submission in submissions:
+        for submission in submissions.stream.submissions():
             debugTime = time.time()
             warned = False
 
@@ -442,6 +442,16 @@ class Snapshill:
 
     def _login(self):
         self.reddit = praw.Reddit(
+            client_id=self.client_id,
+            client_secret=self.client_secret,
+            username=self.username,
+            password=self.password,
+            user_agent=USER_AGENT,
+        )
+
+
+    def _loginreddit(reddit):
+        reddit = praw.Reddit(
             client_id=self.client_id,
             client_secret=self.client_secret,
             username=self.username,
