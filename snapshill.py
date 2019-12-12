@@ -469,7 +469,7 @@ cur = db.cursor()
 
 if __name__ == "__main__":
     with open('config.yaml') as config_file:
-        config = yaml.load(config_file)
+        CONFIG = yaml.load(config_file)
         client_id = CONFIG['Client ID']
         client_secrect = CONFIG['Client Secret']
         username = CONFIG['Username']
