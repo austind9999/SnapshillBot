@@ -17,7 +17,6 @@ from praw.exceptions import APIException, ClientException, PRAWException
 from prawcore.exceptions import PrawcoreException
 from requests.exceptions import ConnectionError
 
-USER_AGENT = "Archives to archive.is and archive.org (/r/SnapshillBot) v1.4"
 INFO = "/r/SnapshillBot"
 CONTACT = "/message/compose?to=\/r\/SnapshillBot"
 ARCHIVE_ORG_FORMAT = "%Y%m%d%H%M%S"
@@ -468,12 +467,15 @@ db = sqlite3.connect(DB_FILE)
 cur = db.cursor()
 
 if __name__ == "__main__":
-    username = os.environ.get("REDDIT_USER")
-    password = os.environ.get("REDDIT_PASS")
-
-    client_id = os.environ.get("REDDIT_CLIENT_ID")
-    client_secret = os.environ.get("REDDIT_CLIENT_SECRET")
-
+    with open('config.yaml') as config_file:
+        config = yaml.load(config_file)
+        client_id = CONFIG['Client ID']
+        client_secrect = CONFIG['Client Secret']
+        username = CONFIG['Username']
+        password = CONFIG['Password']
+        subreddit = CONFIG['Subreddits']
+        USER_AGENT = CONFIG['User Agent']
+    
     limit = int(os.environ.get("LIMIT", 25))
     wait = int(os.environ.get("WAIT", 5))
     refresh = int(os.environ.get("REFRESH", 1800))
@@ -484,7 +486,7 @@ if __name__ == "__main__":
         password,
         client_id,
         client_secret,
-        settings_wiki="SnapshillBot",
+        settings_wiki="MemesModArchive",
         limit=limit,
     )
     snapshill.setup()
