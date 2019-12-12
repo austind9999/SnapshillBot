@@ -471,7 +471,7 @@ if __name__ == "__main__":
     with open('config.yaml') as config_file:
         CONFIG = yaml.load(config_file)
         client_id = CONFIG['Client ID']
-        client_secrect = CONFIG['Client Secret']
+        client_secret = CONFIG['Client Secret']
         username = CONFIG['Username']
         password = CONFIG['Password']
         subreddit = CONFIG['Subreddits']
