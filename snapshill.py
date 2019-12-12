@@ -54,7 +54,7 @@ warnings.simplefilter("ignore")  # Ignore ResourceWarnings (because screw them)
 
 
 def get_footer():
-    return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
+    return "\n\n*I am official the r/memes archive bot. | This comment should be removed.".format(
         info=INFO, contact=CONTACT
     )
 
@@ -365,9 +365,9 @@ class Snapshill:
         if not self._setup:
             raise Exception("Snapshill not ready yet!")
 
-        submissions = self.reddit.front.new(limit=self.limit)
+        subreddit = reddit.subreddit('memes')
 
-        for submission in submissions:
+        for submission in subreddit.stream.submissions():
             debugTime = time.time()
             warned = False
 
