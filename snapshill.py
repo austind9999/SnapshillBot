@@ -8,7 +8,6 @@ import sqlite3
 import time
 import traceback
 import warnings
-import yaml
 
 from bs4 import BeautifulSoup
 from html.parser import unescape
@@ -18,6 +17,7 @@ from praw.exceptions import APIException, ClientException, PRAWException
 from prawcore.exceptions import PrawcoreException
 from requests.exceptions import ConnectionError
 
+USER_AGENT = "Archives to archive.is and archive.org (/r/SnapshillBot) v1.4"
 INFO = "/r/SnapshillBot"
 CONTACT = "/message/compose?to=\/r\/SnapshillBot"
 ARCHIVE_ORG_FORMAT = "%Y%m%d%H%M%S"
@@ -466,6 +466,12 @@ class Snapshill:
 
 db = sqlite3.connect(DB_FILE)
 cur = db.cursor()
+HASLINKS = "SELECT name FROM sqlite_master WHERE type='table' AND name='links';"
+if cur.execute(HASLINKS):
+    log.info('Found table "links" in db %s.' % DB_FILE)
+else:
+    cur.execute('CREATE TABLE links (id TEXT PRIMARY KEY, reply TEXT)')
+    log.info('Created table "links" in db %s.' % DB_FILE)
 
 if __name__ == "__main__":
     with open('config.yaml') as config_file:
@@ -474,9 +480,8 @@ if __name__ == "__main__":
         client_secret = CONFIG['Client Secret']
         username = CONFIG['Username']
         password = CONFIG['Password']
-        subreddit = CONFIG['Subreddits']
         USER_AGENT = CONFIG['User Agent']
-    
+
     limit = int(os.environ.get("LIMIT", 25))
     wait = int(os.environ.get("WAIT", 5))
     refresh = int(os.environ.get("REFRESH", 1800))
@@ -487,7 +492,7 @@ if __name__ == "__main__":
         password,
         client_id,
         client_secret,
-        settings_wiki="MemesModArchive",
+        settings_wiki="SnapshillBot",
         limit=limit,
     )
     snapshill.setup()
