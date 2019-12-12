@@ -42,13 +42,14 @@ RECOVERABLE_EXC = (
     ConnectionError,
 )
 
-r = praw.Reddit(
-    client_id=self.client_id,
-    client_secret=self.client_secret,
-    username=self.username,
-    password=self.password,
-    user_agent=USER_AGENT,
-)
+def _login(r):
+    r = praw.Reddit(
+      client_id=self.client_id,
+      client_secret=self.client_secret,
+      username=self.username,
+      password=self.password,
+      user_agent=USER_AGENT,
+    )
 
 loglevel = logging.DEBUG if os.environ.get("DEBUG") == "true" else logging.INFO
 TESTING = os.environ.get("TEST") == "true"
