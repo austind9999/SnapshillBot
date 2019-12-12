@@ -365,9 +365,9 @@ class Snapshill:
         if not self._setup:
             raise Exception("Snapshill not ready yet!")
 
-        submissions = self.subreddit('memes+meme')
+        subreddit = self.subreddit('memes+meme')
 
-        for submission in submissions.stream.submissions():
+        for submission in subreddit.stream.submissions():
             debugTime = time.time()
             warned = False
 
