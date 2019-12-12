@@ -42,14 +42,6 @@ RECOVERABLE_EXC = (
     ConnectionError,
 )
 
-def _login(r):
-    r = praw.Reddit(
-      client_id=self.client_id,
-      client_secret=self.client_secret,
-      username=self.username,
-      password=self.password,
-      user_agent=USER_AGENT,
-    )
 
 loglevel = logging.DEBUG if os.environ.get("DEBUG") == "true" else logging.INFO
 TESTING = os.environ.get("TEST") == "true"
@@ -62,7 +54,7 @@ warnings.simplefilter("ignore")  # Ignore ResourceWarnings (because screw them)
 
 
 def get_footer():
-    return "\n\n*I am official the r/memes archive bot. | This comment should be removed.".format(
+    return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
         info=INFO, contact=CONTACT
     )
 
@@ -373,8 +365,9 @@ class Snapshill:
         if not self._setup:
             raise Exception("Snapshill not ready yet!")
 
-        subreddit = r.subreddit('memes+meme')
-        for submission in subreddit.stream.submissions():
+        submissions = self.reddit.front.new(limit=self.limit)
+
+        for submission in submissions:
             debugTime = time.time()
             warned = False
 
@@ -446,7 +439,7 @@ class Snapshill:
             name = subreddit.display_name.lower()
             log.debug("get header name: {}".format(name))
             self.headers[name] = Header(self.reddit, self.settings_wiki, name)
-            
+
     def _login(self):
         self.reddit = praw.Reddit(
             client_id=self.client_id,
@@ -490,9 +483,9 @@ if __name__ == "__main__":
         password = CONFIG['Password']
         USER_AGENT = CONFIG['User Agent']
 
-    limit = int(os.environ.get("LIMIT", 100))
-    wait = int(os.environ.get("WAIT", 2))
-    refresh = int(os.environ.get("REFRESH", 600))
+    limit = int(os.environ.get("LIMIT", 25))
+    wait = int(os.environ.get("WAIT", 5))
+    refresh = int(os.environ.get("REFRESH", 1800))
 
     log.info("Starting...")
     snapshill = Snapshill(
