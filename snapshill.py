@@ -378,14 +378,14 @@ class Snapshill:
 
         subreddit = reddit.subreddit('memes')
         for submission in subreddit.stream.submissions(skip_existing=True):
-            debugTime = time.time()
-            warned = False
+#            debugTime = time.time()
+#            warned = False
 
             log.debug("Found submission.\n" + submission.permalink)
 
-            if not should_notify(submission):
-                log.debug("Skipping.")
-                continue
+#            if not should_notify(submission):
+#                log.debug("Skipping.")
+#                continue
 
             archives = [ArchiveContainer(fix_url(submission.url), submission.title)]
 
