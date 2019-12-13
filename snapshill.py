@@ -53,7 +53,17 @@ logging.getLogger("requests").setLevel(loglevel)
 warnings.simplefilter("ignore")  # Ignore ResourceWarnings (because screw them)
 
 
-reddit = praw.Reddit(
+if __name__ == "__main__":
+    with open('config.yaml') as config_file:
+        CONFIG = yaml.load(config_file)
+        client_id = CONFIG['Client ID']
+        client_secret = CONFIG['Client Secret']
+        username = CONFIG['Username']
+        password = CONFIG['Password']
+        USER_AGENT = CONFIG['User Agent']
+
+def main(self):
+    reddit = praw.Reddit(
         client_id=self.client_id,
         client_secret=self.client_secret,
         username=self.username,
@@ -61,13 +71,14 @@ reddit = praw.Reddit(
         user_agent=USER_AGENT,
         )
 
-self.reddit = praw.Reddit(
-    client_id=self.client_id,
-    client_secret=self.client_secret,
-    username=self.username,
-    password=self.password,
-    user_agent=USER_AGENT,
-    )
+def _login(self):
+    self.reddit = praw.Reddit(
+        client_id=self.client_id,
+        client_secret=self.client_secret,
+        username=self.username,
+        password=self.password,
+        user_agent=USER_AGENT,
+        )
 
 def get_footer():
     return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
