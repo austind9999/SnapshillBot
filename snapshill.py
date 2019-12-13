@@ -24,8 +24,8 @@ CONTACT = "/message/compose?to=\/r\/SnapshillBot"
 ARCHIVE_ORG_FORMAT = "%Y%m%d%H%M%S"
 MEGALODON_JP_FORMAT = "%Y-%m%d-%H%M-%S"
 DB_FILE = os.environ.get("DATABASE", "snapshill.sqlite3")
-LEN_MAX = 35
-REDDIT_API_WAIT = 2
+#LEN_MAX = 35
+#REDDIT_API_WAIT = 2
 WARN_TIME = 300  # warn after spending 5 minutes on a post
 REDDIT_PATTERN = re.compile(
     "https?://(([A-z]{2})(-[A-z]{2})" "?|beta|i|m|pay|ssl|www)\.?reddit\.com"
