@@ -493,7 +493,7 @@ if __name__ == "__main__":
         password = CONFIG['Password']
         USER_AGENT = CONFIG['User Agent']
 
-    limit = int(os.environ.get("LIMIT", 500))
+    limit = int(os.environ.get("LIMIT", 100))
     wait = int(os.environ.get("WAIT", 0))
     refresh = int(os.environ.get("REFRESH", 100))
 
