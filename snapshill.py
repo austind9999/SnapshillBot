@@ -25,7 +25,7 @@ ARCHIVE_ORG_FORMAT = "%Y%m%d%H%M%S"
 MEGALODON_JP_FORMAT = "%Y-%m%d-%H%M-%S"
 DB_FILE = os.environ.get("DATABASE", "snapshill.sqlite3")
 LEN_MAX = 35
-REDDIT_API_WAIT = 0
+REDDIT_API_WAIT = 2
 WARN_TIME = 150  # warn after spending 5 minutes on a post
 REDDIT_PATTERN = re.compile(
     "https?://(([A-z]{2})(-[A-z]{2})" "?|beta|i|m|pay|ssl|www)\.?reddit\.com"
@@ -494,7 +494,7 @@ if __name__ == "__main__":
         USER_AGENT = CONFIG['User Agent']
 
     limit = int(os.environ.get("LIMIT", 100))
-    wait = int(os.environ.get("WAIT", 0))
+    wait = int(os.environ.get("WAIT", 2))
     refresh = int(os.environ.get("REFRESH", 100))
 
     log.info("Starting...")
@@ -519,7 +519,7 @@ if __name__ == "__main__":
                 log.info("Done")
                 # This will refresh by default around ~30 minutes (depending
                 # on delays).
-                if cycles > (refresh / wait) / 0:
+                if cycles > (refresh / wait) / 2:
                     log.info("Reloading header text and ignore list...")
                     snapshill.refresh_headers()
                     cycles = 0
