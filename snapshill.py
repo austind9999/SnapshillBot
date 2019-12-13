@@ -62,7 +62,7 @@ if __name__ == "__main__":
         password = CONFIG['Password']
         USER_AGENT = CONFIG['User Agent']
 
-def main():
+def main(self):
     reddit = praw.Reddit(
         client_id=self.client_id,
         client_secret=self.client_secret,
