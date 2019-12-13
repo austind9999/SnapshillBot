@@ -53,6 +53,14 @@ logging.getLogger("requests").setLevel(loglevel)
 warnings.simplefilter("ignore")  # Ignore ResourceWarnings (because screw them)
 
 
+reddit = praw.Reddit(
+        client_id=self.client_id,
+        client_secret=self.client_secret,
+        username=self.username,
+        password=self.password,
+        user_agent=USER_AGENT,
+        )
+
 def get_footer():
     return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
         info=INFO, contact=CONTACT
@@ -445,15 +453,6 @@ class Snapshill:
 
     def _login(self):
         self.reddit = praw.Reddit(
-            client_id=self.client_id,
-            client_secret=self.client_secret,
-            username=self.username,
-            password=self.password,
-            user_agent=USER_AGENT,
-        )
-        
-    def main():
-        reddit = praw.Reddit(
             client_id=self.client_id,
             client_secret=self.client_secret,
             username=self.username,
