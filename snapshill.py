@@ -62,14 +62,14 @@ if __name__ == "__main__":
         password = CONFIG['Password']
         USER_AGENT = CONFIG['User Agent']
 
-def main(self):
+def main():
     reddit = praw.Reddit(
         client_id=self.client_id,
         client_secret=self.client_secret,
         username=self.username,
         password=self.password,
         user_agent=USER_AGENT,
-        )
+    )
 
 def _login(self):
     self.reddit = praw.Reddit(
@@ -78,7 +78,7 @@ def _login(self):
         username=self.username,
         password=self.password,
         user_agent=USER_AGENT,
-        )
+    )
 
 def get_footer():
     return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
