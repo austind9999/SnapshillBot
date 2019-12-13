@@ -493,7 +493,7 @@ if __name__ == "__main__":
         password = CONFIG['Password']
         USER_AGENT = CONFIG['User Agent']
 
-    limit = int(os.environ.get("LIMIT", 100))
+    limit = int(os.environ.get("LIMIT", 500))
     wait = int(os.environ.get("WAIT", 0))
     refresh = int(os.environ.get("REFRESH", 100))
 
@@ -519,7 +519,7 @@ if __name__ == "__main__":
                 log.info("Done")
                 # This will refresh by default around ~30 minutes (depending
                 # on delays).
-                if cycles > (refresh / wait) / 2:
+                if cycles > (refresh / wait) / 0:
                     log.info("Reloading header text and ignore list...")
                     snapshill.refresh_headers()
                     cycles = 0
