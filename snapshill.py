@@ -376,7 +376,7 @@ class Snapshill:
             user_agent=USER_AGENT,
         )
 
-        subreddit = reddit.subreddit('memes+meme')
+        subreddit = reddit.subreddit('memes')
         for submission in subreddit.stream.submissions(skip_existing=True):
             debugTime = time.time()
             warned = False
