@@ -81,7 +81,7 @@ def _login(self):
     )
     
 if __name__ == "__main__":
-    main()
+    main(self)
 
 def get_footer():
     return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
