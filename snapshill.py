@@ -390,6 +390,14 @@ class Snapshill:
 
 #        for submission in submissions:
 
+        reddit = praw.Reddit(
+           client_id=client_id,
+           client_secret=client_secret,
+           username=username,
+           password=password,
+           user_agent=USER_AGENT,
+           )
+
         subreddit = reddit.subreddit("memes")
         for submission in subreddit.stream.submissions():
             debugTime = time.time()
