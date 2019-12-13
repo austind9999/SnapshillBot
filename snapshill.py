@@ -53,27 +53,6 @@ logging.getLogger("requests").setLevel(loglevel)
 warnings.simplefilter("ignore")  # Ignore ResourceWarnings (because screw them)
 
 
-if __name__ == "__main__":
-    with open('config.yaml') as config_file:
-        CONFIG = yaml.load(config_file)
-        client_id = CONFIG['Client ID']
-        client_secret = CONFIG['Client Secret']
-        username = CONFIG['Username']
-        password = CONFIG['Password']
-        USER_AGENT = CONFIG['User Agent']
-
-def main():
-    reddit = praw.Reddit(
-        client_id=client_id,
-        client_secret=client_secret,
-        username=username,
-        password=password,
-        user_agent=USER_AGENT,
-    )
-    
-if __name__ == "__main__":
-    main()
-   
 def get_footer():
     return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
         info=INFO, contact=CONTACT
@@ -387,18 +366,17 @@ class Snapshill:
             raise Exception("Snapshill not ready yet!")
 
 #        submissions = self.reddit.front.new(limit=self.limit)
-
+#
 #        for submission in submissions:
-
         reddit = praw.Reddit(
-           client_id=client_id,
-           client_secret=client_secret,
-           username=username,
-           password=password,
-           user_agent=USER_AGENT,
-           )
+            client_id=self.client_id,
+            client_secret=self.client_secret,
+            username=self.username,
+            password=self.password,
+            user_agent=USER_AGENT,
+        )
 
-        subreddit = reddit.subreddit("memes")
+        subreddit = reddit.subreddit('memes+meme')
         for submission in subreddit.stream.submissions():
             debugTime = time.time()
             warned = False
