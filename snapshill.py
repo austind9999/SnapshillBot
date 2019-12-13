@@ -64,27 +64,15 @@ if __name__ == "__main__":
 
 def main():
     reddit = praw.Reddit(
-        client_id=self.client_id,
-        client_secret=self.client_secret,
-        username=self.username,
-        password=self.password,
-        user_agent=USER_AGENT,
-    )
-
-def _login(self):
-    self.reddit = praw.Reddit(
-        client_id=self.client_id,
-        client_secret=self.client_secret,
-        username=self.username,
-        password=self.password,
+        client_id=client_id,
+        client_secret=client_secret,
+        username=username,
+        password=password,
         user_agent=USER_AGENT,
     )
     
 if __name__ == "__main__":
     main()
-
-if __name__ == "__main__":
-    _login(self)
    
 def get_footer():
     return "\n\n*I am just a simple bot, __not__ a moderator of this subreddit* | [*bot subreddit*]({info}) | [*contact the maintainers*]({contact})".format(
